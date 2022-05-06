@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from Proyecto1.views import calcularEdad, despedida, obtenerFecha, saludo
+from Proyecto1.views import Mostrar_Mi_Primer_Plantilla, calcularEdad, despedida, obtenerFecha, saludo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludo/', saludo),
     path('nosveremos/', despedida),
     path('fecha/', obtenerFecha),
-    path('edades/<int:ano>/<int:edad>', calcularEdad)#la url se le colocn los argumentos y debe especificar el tipo de dato a entero ya que por defecto se toma como cadena
+    path('edades/<int:ano>/<int:edad>', calcularEdad),#la url se le colocn los argumentos y debe especificar el tipo de dato a entero ya que por defecto se toma como cadena
     #a la hora de colocar la url se coloca por ejemplo edades/18/2021 nombre del endpoint, parametro edad y parametro año.
+    path('plantillaestatica/', Mostrar_Mi_Primer_Plantilla)
 ]
