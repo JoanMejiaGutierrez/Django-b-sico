@@ -41,3 +41,17 @@ def obtenerFecha(request):
     """ %fechaActual
     #s es un marcador de posición de python y en esa posición se coloca el valor de fechaActual
     return HttpResponse(docObtenerFecha)
+
+
+def calcularEdad(request, ano, edad): #parametro adicional que representa el año
+    periodo = ano - 2022
+    edadFutura = edad + periodo
+    doc = """
+    <html>
+        <body>
+            <H2>En el año %s tendrás %s años</h2>
+        </body>
+    </html>
+    """%(ano, edadFutura)#Esta cadena cuenta con 2 marcadores de posición para año y edad futura respectivamente
+
+    return HttpResponse(doc)
