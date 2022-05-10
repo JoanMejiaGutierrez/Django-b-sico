@@ -8,5 +8,11 @@
 </head>
 <body>
     <h2>Esta es una plantilla estatica</h2>
+    <p>El nombre del profesor es: {{nombre_persona}} {{apellido_persona}}</p><!--variables con llaves dobles-->
+    <p>La fecha actual ahora mismo es {{momento_actual}}</p>
+    <p>La fecha actual ahora mismo es {{momento_actual.day}}/{{momento_actual.month}}/{{momento_actual.year}}</p><!--Fecha en otro formato-->
+
+    <p>El nombre del profesor es: {{miPNombre}} {{miPApellido}}</p><!--estos valores vienen de las propiedades de un objeto-->
+    <p>El nombre del profesor es: {{miP.nombre}} {{miP.apellido}}</p><!--estos valores vienen de un objeto directo-->
 </body>
 </html>
