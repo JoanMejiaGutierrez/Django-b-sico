@@ -84,7 +84,7 @@ def Mostrar_Mi_Primer_Plantilla(request):
     documento = plltlla.render(ctx)#renderiza o muestra el contenido en pantalla
 
     return HttpResponse(documento)
-
+#asd
 
 
 class Persona(object):

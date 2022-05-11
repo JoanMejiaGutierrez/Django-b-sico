@@ -7,7 +7,23 @@
     <title>plantilla</title>
 </head>
 <body>
+
+    {#esto es un comentario y no sale en el diseño#}
+    {% comment %}Comentario de mas de
+    mas de una linea
+    {% endcomment %}
+
+
+
     <h2>Esta es una plantilla estatica</h2>
+
+    {%if miP.nombre == "Joan" %}<!--Condicional con comparaciones(if normal)-->
+        <p>Eres administrador de la pagina</p>
+    {%else%}
+        <p>NO eres el admin</p>    
+    {%endif%}
+
+
     <p>El nombre del profesor es: {{nombre_persona}} {{apellido_persona}}</p><!--variables con llaves dobles-->
     <p>La fecha actual ahora mismo es {{momento_actual}}</p>
     <p>La fecha actual ahora mismo es {{momento_actual.day}}/{{momento_actual.month}}/{{momento_actual.year}}</p><!--Fecha en otro formato-->
@@ -17,10 +33,22 @@
     <h3>Materias impartidas:</h3>
     <div>
         <ul>
-            {%if materias%}
+            {%if materias%}<!--pregunta si existe esa variable-->
                 {% for materia in materias %}<!--Apertura del for-->
-                <li>{{materia.lower}}</li><!--el metodo lower, django no se ponen parentesis-->
-                {% endfor %}             <!--Fin del for-->
+                <li>{{materia.lower}}</li><!--en django, las llamadas a metodos en una plantilla no llevan parentesis-->
+                {% endfor %}             
+            {%else%}
+                <p>la lista esta vacia</p>
+            {%endif%}
+        </ul>
+    </div>
+
+    <div>
+        <ul>
+            {%if materias%}<!--pregunta si existe esa variable-->
+                {% for materia in materias %}<!--Apertura del for-->
+                <li>{{materia|lower|first}}</li><!--filtra variable por minusculas y primera letra-->
+                {% endfor %}             
             {%else%}
                 <p>la lista esta vacia</p>
             {%endif%}
@@ -28,3 +56,9 @@
     </div>
 </body>
 </html>
+
+<!--Condicionales, filtros y cargadores-->
+<!--De preferencia, no usar demasiado los flujos de control(condicionales, bucles) ya que eso va mas en la parte logica (views)-->
+<!--sintaxis: <valor> | <filtro>. ej: miCadena | first | lower-->
+<!--Otros filtros: upper-->
+<!--Doc de flujos de control y filtros: https://docs.djangoproject.com/en/4.0/ref/templates/builtins/-->
