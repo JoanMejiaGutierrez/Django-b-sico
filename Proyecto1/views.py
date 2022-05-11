@@ -65,18 +65,21 @@ def calcularEdad(request, ano, edad): #parametro adicional que representa el añ
 
 def Mostrar_Mi_Primer_Plantilla(request):
 
-    nombre = "Miguel Angel"
-    apellido = "Gerrero"
+    nombre = "Miguel"
+    apellido = "Guerrero"
     fecha_actual = datetime.datetime.now()
 
     miPersona1 = Persona("Joan", "Mejia")#Probamos enviar las propiedades de un parametro
+
+    materias = ["TBD", "POO", "ED", "IA", "LyA2"]
+
     #con open() no es la forma mas recomendable si no con cargadores
     #doc_externo = open("C:/Users/Joan/Desktop/Proyectos Django/Proyecto1/Proyecto1/Plantillas/miPrimerPlantillas.html") #metodo para cargar elementos externos donde obtiene todo el codigo de la plantilla
     doc_externo = open("C:/Users/Joan/Desktop/Proyectos Django/Proyecto1/Proyecto1/Plantillas/miPrimerPlantillas.html")
     plltlla = Template(doc_externo.read())#carga la plantilla
     doc_externo.close()
 
-    ctx = Context({"nombre_persona": nombre, "apellido_persona": apellido, "momento_actual": fecha_actual, "miPNombre": miPersona1.nombre, "miPApellido": miPersona1.apellido, "miP": miPersona1})#enviamos parametros por diccionario
+    ctx = Context({"nombre_persona": nombre, "apellido_persona": apellido, "momento_actual": fecha_actual, "miP": miPersona1, "materias": materias})#enviamos parametros por diccionario
 
     documento = plltlla.render(ctx)#renderiza o muestra el contenido en pantalla
 

@@ -12,7 +12,19 @@
     <p>La fecha actual ahora mismo es {{momento_actual}}</p>
     <p>La fecha actual ahora mismo es {{momento_actual.day}}/{{momento_actual.month}}/{{momento_actual.year}}</p><!--Fecha en otro formato-->
 
-    <p>El nombre del profesor es: {{miPNombre}} {{miPApellido}}</p><!--estos valores vienen de las propiedades de un objeto-->
     <p>El nombre del profesor es: {{miP.nombre}} {{miP.apellido}}</p><!--estos valores vienen de un objeto directo-->
+
+    <h3>Materias impartidas:</h3>
+    <div>
+        <ul>
+            {%if materias%}
+                {% for materia in materias %}<!--Apertura del for-->
+                <li>{{materia.lower}}</li><!--el metodo lower, django no se ponen parentesis-->
+                {% endfor %}             <!--Fin del for-->
+            {%else%}
+                <p>la lista esta vacia</p>
+            {%endif%}
+        </ul>
+    </div>
 </body>
 </html>
