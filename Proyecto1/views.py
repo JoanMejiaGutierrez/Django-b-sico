@@ -84,6 +84,14 @@ class Persona(object):
         self.nombre = nombre
         self.apellido = apellido
 
+
+def miHijo1(request):
+    fecha_actual = datetime.datetime.now()
+    return render(request, "hijo1.html", {"miFecha": fecha_actual})  
+
+def miHijo2(request):
+    return render(request, "hijo2.html") 
+
 #Cargadores
 #0. from django.template.loader import get_template
 #1. agregar ruta en settings.py>propiedad TEMPLATES> propiedad DIRS> dentro de los corchetes entre comillas
@@ -102,3 +110,16 @@ class Persona(object):
 #2. Revisar donde se va a posicionar(arriba, abajo, en medio, etc.) la plantilla en la plantilla contenedora.
 #3. colocar {% include "<nombre de la plantilla>" %} en la posicion que se determinó
 #Nota: para tener mejor organizado se recomienda crear mas carpetas dentro de templates y colocar en el include el resto de la ruta, o bien, agregar toda la ruta al cargador
+
+
+#Herencia de plantillas
+#1.Crear plantilla padre por lo general es llamado base.html
+#2.titulo de la pagina cambiante: {% block title %}{% endblock %}
+#3.Codificar el contenido no cambiante de forma normal(la parte que se va a heredar en las demas)
+#4. {% block content %}{% endblock %} para indicar que es contenido cambiante(codigo de las otras paginas)
+#Los siguientes pasos se hacen por cada pagina nueva
+#5. Crear pagina para heredar de base
+#6. {% extends "base.html" %} en la primera linea del archivo para inidicar la herencia
+#7. {% block title %}<Nuevo titulo>{% endblock %}
+#8. {% block content %} <codigo propio> {% endblog %}
+#9. Agregar endpoint en vista.py y agregar su ruta en urls.py con su respectivo import(el import aveces se pone automatico)

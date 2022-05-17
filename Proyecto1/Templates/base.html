@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title><!--indicamos que el titulo puede cambiar-->
+</head>
+<body>
+    <header>
+        <h1 style="background-color:  green; color: white; text-align:center">Esta es una cabezera</h1>
+        {% include "barra.html" %}<!--tambien se pueden incrustar archivos a la vez-->
+        <h3>practicando herencia de plantillas con django</h3>
+    </header>
+
+    <!--Esta parte inidica que este contenido es el contenido cambiante-->
+    {% block content %}
+    {% endblock %}
+
+
+    <footer style="background-color:  green; color: white; text-align:center">Derechos reservados Joan SA de CV</footer>
+</body>
+</html>
