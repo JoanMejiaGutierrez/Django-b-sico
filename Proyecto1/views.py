@@ -7,7 +7,7 @@ import django
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
-
+from django.template.loader import get_template
 
 #Las vistas saludo y despedida son estaticas ya que no cambia ningun valor en la ejecución
 def saludo(request):
@@ -71,23 +71,25 @@ def Mostrar_Mi_Primer_Plantilla(request):
 
     miPersona1 = Persona("Joan", "Mejia")#Probamos enviar las propiedades de un parametro
 
+    
     materias = ["TBD", "POO", "ED", "IA", "LyA2"]
 
-    #con open() no es la forma mas recomendable si no con cargadores
-    #doc_externo = open("C:/Users/Joan/Desktop/Proyectos Django/Proyecto1/Proyecto1/Plantillas/miPrimerPlantillas.html") #metodo para cargar elementos externos donde obtiene todo el codigo de la plantilla
-    doc_externo = open("C:/Users/Joan/Desktop/Proyectos Django/Proyecto1/Proyecto1/Plantillas/miPrimerPlantillas.html")
-    plltlla = Template(doc_externo.read())#carga la plantilla
-    doc_externo.close()
 
-    ctx = Context({"nombre_persona": nombre, "apellido_persona": apellido, "momento_actual": fecha_actual, "miP": miPersona1, "materias": materias})#enviamos parametros por diccionario
 
-    documento = plltlla.render(ctx)#renderiza o muestra el contenido en pantalla
+    doc_externo = get_template('miPrimerPlantilla.html')
+
+    documento = doc_externo.render({"nombre_persona": nombre, "apellido_persona": apellido, "momento_actual": fecha_actual, "miP": miPersona1, "materias": materias})
 
     return HttpResponse(documento)
-#asd
 
 
 class Persona(object):
     def __init__(self, nombre, apellido) -> None:
         self.nombre = nombre
         self.apellido = apellido
+
+#0. from django.template.loader import get_template
+#1. agregar ruta en settings.py>propiedad TEMPLATES> propiedad DIRS> dentro de los corchetes entre comillas
+#2. doc_externo = get_template('<nombre de la plantilla>')
+#3. documento = doc_externo.render(<diccionario con los parametros a enviar>)
+#3. return HttpResponse(documento)
