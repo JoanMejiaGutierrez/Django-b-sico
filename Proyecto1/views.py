@@ -8,6 +8,7 @@ from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
 from django.template.loader import get_template
+from django.shortcuts import render
 
 #Las vistas saludo y despedida son estaticas ya que no cambia ningun valor en la ejecución
 def saludo(request):
@@ -75,12 +76,7 @@ def Mostrar_Mi_Primer_Plantilla(request):
     materias = ["TBD", "POO", "ED", "IA", "LyA2"]
 
 
-
-    doc_externo = get_template('miPrimerPlantilla.html')
-
-    documento = doc_externo.render({"nombre_persona": nombre, "apellido_persona": apellido, "momento_actual": fecha_actual, "miP": miPersona1, "materias": materias})
-
-    return HttpResponse(documento)
+    return render(request, "miPrimerPlantilla.html", {"nombre_persona": nombre, "apellido_persona": apellido, "momento_actual": fecha_actual, "miP": miPersona1, "materias": materias})
 
 
 class Persona(object):
@@ -88,8 +84,16 @@ class Persona(object):
         self.nombre = nombre
         self.apellido = apellido
 
+#Cargadores
 #0. from django.template.loader import get_template
 #1. agregar ruta en settings.py>propiedad TEMPLATES> propiedad DIRS> dentro de los corchetes entre comillas
 #2. doc_externo = get_template('<nombre de la plantilla>')
 #3. documento = doc_externo.render(<diccionario con los parametros a enviar>)
 #3. return HttpResponse(documento)
+
+#Reduccion de lineas de codigo
+#0. from django.shortcuts import render
+#1. eliminar lineas donde se obtiene la plantilla y donde se renderiza
+#3. en vez del HttpsRequest, retornar render(request, <nombre de plantilla>, <contexto o diccionario de parametros>)
+#Nota: para esto se tiene que tener previamente configurado el cargador
+
