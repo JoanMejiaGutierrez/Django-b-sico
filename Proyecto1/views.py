@@ -97,3 +97,8 @@ class Persona(object):
 #3. en vez del HttpsRequest, retornar render(request, <nombre de plantilla>, <contexto o diccionario de parametros>)
 #Nota: para esto se tiene que tener previamente configurado el cargador
 
+#Plantillas incrustadas(Una dentro de otra)
+#1. Crear nueva plantilla en la carpeta templates
+#2. Revisar donde se va a posicionar(arriba, abajo, en medio, etc.) la plantilla en la plantilla contenedora.
+#3. colocar {% include "<nombre de la plantilla>" %} en la posicion que se determinó
+#Nota: para tener mejor organizado se recomienda crear mas carpetas dentro de templates y colocar en el include el resto de la ruta, o bien, agregar toda la ruta al cargador
